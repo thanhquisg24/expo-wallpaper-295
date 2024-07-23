@@ -1,8 +1,10 @@
-import { ImageBackground, StyleSheet, View } from 'react-native';
+import { ImageBackground, StyleSheet, TouchableOpacity, View } from 'react-native';
 
+import { ByCategoryType } from '../../navigators/type';
 import React from 'react';
 import { Text } from '@ui-kitten/components';
 import { customStyles } from '../../custom-style/style';
+import { useNavigation } from '@react-navigation/native';
 
 const data = [
   { id: '1', category: 'animals', title: 'Animals', source: require('./img/animals.jpg') },
@@ -26,18 +28,27 @@ interface ICategoryItem {
 
 const CategoryItem = (props: { item: ICategoryItem }) => {
   const { item } = props;
+  const navigation = useNavigation();
+  const onPress = () => {
+    const params: ByCategoryType = { category: item.category, title: item.title, q: item.category };
+    navigation.navigate('ExploreDetail', params);
+  };
   return (
     <View style={{ flex: 1 }}>
-      <ImageBackground source={item.source} resizeMode='cover' style={styles.image}>
-        <Text category='h1'>{item.title}</Text>
-      </ImageBackground>
+      <TouchableOpacity onPress={onPress}>
+        <ImageBackground source={item.source} resizeMode='cover' style={styles.image}>
+          <Text category='h4' style={styles.text}>
+            {item.title}
+          </Text>
+        </ImageBackground>
+      </TouchableOpacity>
     </View>
   );
 };
 
 export default function CategoryList() {
   return (
-    <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap', rowGap: 5, width: '100%', height: '100%' }}>
+    <View style={{ flex: 1, flexDirection: 'column', rowGap: 10, width: '100%', height: '100%' }}>
       {data.map((item) => (
         <CategoryItem key={item.id} item={item} />
       ))}
@@ -52,14 +63,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     width: '100%',
-    height: 250,
+    height: 170,
+    borderRadius: 30,
+    overflow: 'hidden',
   },
   text: {
     color: 'white',
-    fontSize: 42,
     lineHeight: 84,
     fontWeight: 'bold',
     textAlign: 'center',
-    backgroundColor: '#000000c0',
   },
 });

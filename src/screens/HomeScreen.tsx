@@ -1,5 +1,6 @@
 import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 
+import ModalExample from '../components/modal-example';
 import { StatusBar } from 'expo-status-bar';
 import { customStyles } from '../custom-style/style';
 import { getImageNameFromPixaUrl } from '../utils';
@@ -23,7 +24,14 @@ export function HoneScreen() {
     const URL = 'https://pixabay.com/photos/dog-puppy-catch-treat-5021242/';
     const a = getImageNameFromPixaUrl(URL);
     console.log('🚀 ~ file: HomeScreen.tsx:25 ~ useEffect ~ a :', a);
-    // searchImages('puppy', { per_page: 10, page: 1, orientation: 'vertical', image_type: 'photo' }).then((rs) => {
+    // searchImages('nature', {
+    //   per_page: 10,
+    //   page: 1,
+    //   orientation: 'vertical',
+    //   image_type: 'photo',
+    //   min_width: 720,
+    //   min_height: 1200,
+    // }).then((rs) => {
     //   console.log('🚀 ~ file: HomeScreen.tsx:23 ~ useEffect ~ rs:', JSON.stringify(rs));
     // });
   }, []);
@@ -31,6 +39,7 @@ export function HoneScreen() {
   return (
     <View style={[styles.container]}>
       <ScrollView style={customStyles.viewLayout}>
+        <ModalExample />
         <Text style={{ fontSize: 96 }}>Scroll me plz</Text>
         <Image source={logo} />
         <Image source={logo} />

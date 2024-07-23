@@ -21,4 +21,9 @@ export const customStyles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
   },
+  imageVerticalSize: {
+    width: '100%',
+    height: 375,
+    borderRadius: 30,
+  },
 });

@@ -1,4 +1,5 @@
 export * from './ContactScreen';
-export * from './ExploreScreen';
+export * from './explore/ExploreScreen';
 export * from './HomeScreen';
 export * from './SearchScreen';
+export * from './explore/ExploreDetailScreen';

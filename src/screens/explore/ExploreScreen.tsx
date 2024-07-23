@@ -1,9 +1,9 @@
 import { ScrollView, View } from 'react-native';
 
-import CategoryList from './explore/CategoryList';
-import ColorList from './explore/ColorList';
-import { SectionWithTitle } from '../components';
-import { customStyles } from '../custom-style/style';
+import CategoryList from './CategoryList';
+import ColorList from './ColorList';
+import { SectionWithTitle } from '../../components';
+import { customStyles } from '../../custom-style/style';
 
 export const ExploreScreen = () => (
   <View style={{ flex: 1 }}>

@@ -1,15 +1,18 @@
+import { TouchableOpacity, View } from 'react-native';
+
+import { ByColor } from '../../navigators/type';
 import React from 'react';
 import { Text } from '@ui-kitten/components';
-import { View } from 'react-native';
 import { customStyles } from '../../custom-style/style';
+import { useNavigation } from '@react-navigation/native';
 
 const data = [
-  { id: '1', color: 'grayscale', title: 'Grayscale', backgroundColor: 'grayscale' },
+  // { id: '1', color: 'grayscale', title: 'Grayscale', backgroundColor: 'grayscale' },
   { id: '2', color: 'red', title: 'Red', backgroundColor: 'red' },
   { id: '3', color: 'orange', title: 'Orange', backgroundColor: 'orange' },
   { id: '4', color: 'yellow', title: 'Yellow', backgroundColor: 'yellow' },
   { id: '5', color: 'green', title: 'Green', backgroundColor: 'green' },
-  { id: '6', color: 'green', title: 'Green', backgroundColor: 'green' },
+  // { id: '6', color: 'green', title: 'Green', backgroundColor: 'green' },
   { id: '7', color: 'turquoise', title: 'Turquoise', backgroundColor: 'turquoise' },
   { id: '8', color: 'blue', title: 'Blue', backgroundColor: 'blue' },
   { id: '10', color: 'pink', title: 'Pink', backgroundColor: 'pink' },
@@ -29,8 +32,13 @@ interface IColorItem {
 
 const ColorItem = (props: { item: IColorItem }) => {
   const { item } = props;
+  const navigation = useNavigation();
+  const onPress = () => {
+    const params: ByColor = { color: item.color, title: item.title, q: item.color };
+    navigation.navigate('ExploreDetail', params);
+  };
   return (
-    <View style={{ flexDirection: 'column', alignItems: 'center', width: '33.33%' }}>
+    <TouchableOpacity style={{ flexDirection: 'column', alignItems: 'center', width: '33.33%' }} onPress={onPress}>
       <View
         style={{
           width: 100,
@@ -42,7 +50,7 @@ const ColorItem = (props: { item: IColorItem }) => {
       <Text category='s1' style={customStyles.textBottomIcon}>
         {item.title}
       </Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
