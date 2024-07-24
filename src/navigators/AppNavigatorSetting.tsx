@@ -3,6 +3,11 @@
  * navigation flows of your app.
  */
 
+import { EvaTabsNavigator } from './EvaTabsNavigator';
+import { ImageDetailScreen } from '../screens/ImageDetailScreen';
+import { TopTabBarDetail } from '../components/TopTabBar';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
  * as well as what properties (if any) they might take when navigating to them.
@@ -34,15 +39,25 @@ declare global {
 }
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
-// const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator();
 
-// const AppStack = () => {
-//   return (
-//     <Stack.Navigator initialRouteName={'Home'}>
-//       <Stack.Screen name='Home' component={HoneScreen} options={{ headerShown: true }} />
-//     </Stack.Navigator>
-//   );
-// };
+export const AppStack = () => {
+  return (
+    <Stack.Navigator initialRouteName={'EvaTabs'} screenOptions={{ headerShown: false }}>
+      <Stack.Screen name='EvaTabs' component={EvaTabsNavigator} />
+      <Stack.Screen
+        name='ImageDetail'
+        component={ImageDetailScreen}
+        options={({ navigation, route }) => {
+          return {
+            header: () => <TopTabBarDetail navigation={navigation} state={route} isGoBack />,
+            headerShown: true,
+          };
+        }}
+      />
+    </Stack.Navigator>
+  );
+};
 
 // export interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> {}
 

@@ -5,6 +5,7 @@ import * as eva from '@eva-design/material';
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
+import { AppStack } from './src/navigators/AppNavigatorSetting';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { EvaTabsNavigator } from './src/navigators/EvaTabsNavigator';
 import { NavigationContainer } from '@react-navigation/native';
@@ -19,7 +20,8 @@ export default function App() {
       <ApplicationProvider {...eva} theme={{ ...eva.light, ...myTheme }}>
         <SafeAreaView style={{ flex: 1 }}>
           <NavigationContainer>
-            <EvaTabsNavigator />
+            {/* <EvaTabsNavigator /> */}
+            <AppStack />
           </NavigationContainer>
         </SafeAreaView>
       </ApplicationProvider>
