@@ -1,6 +1,5 @@
-import { ExploreDetailScreen, ExploreScreen } from '../../screens';
-import { TopTabBar, TopTabBarDetail } from '../../components/TopTabBar';
-
+import { ExploreScreen } from '../../screens';
+import { TopTabBar } from '../../components/TopTabBar';
 import { createStackNavigator } from '@react-navigation/stack';
 
 const ExploreStack = createStackNavigator();
@@ -17,7 +16,7 @@ export function ExploreStackNavigator() {
           };
         }}
       />
-      <ExploreStack.Screen
+      {/* <ExploreStack.Screen
         name='ExploreDetail'
         component={ExploreDetailScreen}
         options={({ navigation, route }) => {
@@ -25,7 +24,7 @@ export function ExploreStackNavigator() {
             header: () => <TopTabBarDetail navigation={navigation} state={route} isGoBack screenNameToBack='Explore' />,
           };
         }}
-      />
+      /> */}
       {/* <ExploreStack.Screen
         name='ImageDetail'
         component={ImageDetailScreen}

@@ -35,7 +35,7 @@ const ColorItem = (props: { item: IColorItem }) => {
   const navigation = useNavigation();
   const onPress = () => {
     const params: ByColor = { color: item.color, title: item.title, q: item.color };
-    navigation.navigate('ExploreDetail', params);
+    navigation.navigate('Search', params);
   };
   return (
     <TouchableOpacity style={{ flexDirection: 'column', alignItems: 'center', width: '33.33%' }} onPress={onPress}>

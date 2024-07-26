@@ -39,15 +39,7 @@ const TabNavigator = () => (
       }}
     />
     <Screen name='ExploreStack' component={ExploreStackNavigator} options={{ headerShown: false }} />
-    <Screen
-      name='Search'
-      component={SearchScreen}
-      options={({ navigation, route }) => {
-        return {
-          header: () => <TopTabBar navigation={navigation} state={route} title='Search' />,
-        };
-      }}
-    />
+    <Screen name='Search' component={SearchScreen} options={{ headerShown: false }} />
     <Screen
       name='Contact'
       component={ContactScreen}

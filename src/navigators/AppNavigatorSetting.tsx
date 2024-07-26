@@ -28,7 +28,7 @@ export type RootStackParamList = {
   ExploreStack: any;
   ExploreDetail: any;
   ImageDetail: any;
-  Search: undefined;
+  Search: any;
   Contact: undefined;
 };
 

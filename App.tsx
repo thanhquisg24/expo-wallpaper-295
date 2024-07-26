@@ -7,9 +7,10 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { AppStack } from './src/navigators/AppNavigatorSetting';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
-import { EvaTabsNavigator } from './src/navigators/EvaTabsNavigator';
 import { NavigationContainer } from '@react-navigation/native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { SafeAreaViewCustom } from './src/components/SafeAreaViewCustom';
+import { StatusBar } from 'react-native';
 import { myTheme } from './custom-eva-themes';
 
 const queryClient = new QueryClient();
@@ -18,12 +19,14 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <IconRegistry icons={EvaIconsPack} />
       <ApplicationProvider {...eva} theme={{ ...eva.light, ...myTheme }}>
-        <SafeAreaView style={{ flex: 1 }}>
-          <NavigationContainer>
-            {/* <EvaTabsNavigator /> */}
-            <AppStack />
-          </NavigationContainer>
-        </SafeAreaView>
+        <SafeAreaProvider>
+          <SafeAreaViewCustom>
+            <NavigationContainer>
+              <AppStack />
+            </NavigationContainer>
+            <StatusBar />
+          </SafeAreaViewCustom>
+        </SafeAreaProvider>
       </ApplicationProvider>
     </QueryClientProvider>
   );

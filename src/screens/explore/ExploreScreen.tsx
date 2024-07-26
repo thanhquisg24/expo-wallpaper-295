@@ -8,13 +8,12 @@ import { customStyles } from '../../custom-style/style';
 export const ExploreScreen = () => (
   <View style={{ flex: 1 }}>
     <ScrollView style={[customStyles.viewLayout]}>
-    <SectionWithTitle title='By Category'>
+      <SectionWithTitle title='By Categories'>
         <CategoryList />
       </SectionWithTitle>
       <SectionWithTitle title='By Colors'>
         <ColorList />
       </SectionWithTitle>
-  
     </ScrollView>
   </View>
 );

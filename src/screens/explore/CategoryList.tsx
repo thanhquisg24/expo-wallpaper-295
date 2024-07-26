@@ -31,7 +31,7 @@ const CategoryItem = (props: { item: ICategoryItem }) => {
   const navigation = useNavigation();
   const onPress = () => {
     const params: ByCategoryType = { category: item.category, title: item.title, q: item.category };
-    navigation.navigate('ExploreDetail', params);
+    navigation.navigate('Search', params);
   };
   return (
     <View style={{ flex: 1 }}>

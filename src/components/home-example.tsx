@@ -4,7 +4,6 @@ import ModalExample from '../components/modal-example';
 import { StatusBar } from 'expo-status-bar';
 import { customStyles } from '../custom-style/style';
 import { getImageNameFromPixaUrl } from '../utils';
-import { searchImages } from '../service/pixapay';
 import { useEffect } from 'react';
 
 const logo = {
@@ -12,7 +11,7 @@ const logo = {
   width: 64,
   height: 64,
 };
-export function HoneScreen() {
+export function HoneScreenExample() {
   // useMemo(() => {
   //   setState(state + 1);
   //   const a = state + 1;

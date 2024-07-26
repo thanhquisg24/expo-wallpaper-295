@@ -1,8 +1,7 @@
-import { Avatar, Layout } from '@ui-kitten/components';
-import { ByCategoryType, ImageDetailParamsType } from '../../navigators/type';
+import { Avatar, Layout, Spinner } from '@ui-kitten/components';
 import { FlatList, Image, TouchableOpacity, View } from 'react-native';
+import { ImageDetailParamsType, SearchImageParamsType } from '../../navigators/type';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
-import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { ImageHit } from 'pixabay-api/dist/PixabayResponse';
 import { Text } from '@ui-kitten/components';
@@ -10,6 +9,7 @@ import { customStyles } from '../../custom-style/style';
 import { fetchImageFromPixaPay } from '@/src/service/pixapay';
 import { getImageNameFromPixaUrl } from '@/src/utils';
 import { useMemo } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 const gapSize = 5;
 function FlatListItem(props: { item: ImageHit | any }) {
@@ -49,30 +49,36 @@ function FlatListItem(props: { item: ImageHit | any }) {
   );
 }
 
-export const ExploreDetailScreen = () => {
-  const route = useRoute();
-  const params = route.params as ByCategoryType;
-  const { data } = useQuery({
-    queryKey: ['fetchImgPixa', params.q],
-    queryFn: () => fetchImageFromPixaPay(params.q, params),
+export const SearchResultContainer = (props: { params: SearchImageParamsType; q: string }) => {
+  const { q, params } = props;
+  const { data, isLoading } = useQuery({
+    queryKey: ['fetchImgPixa', q],
+    queryFn: () => fetchImageFromPixaPay(q, { ...params, q }),
     refetchOnWindowFocus: false,
-    placeholderData: keepPreviousData,
+    // placeholderData: keepPreviousData,
   });
 
   return (
     <Layout style={{ flex: 1 }}>
-      <FlatList
-        contentContainerStyle={{ gap: gapSize, paddingBottom: 30 }}
-        columnWrapperStyle={{ gap: gapSize }}
-        style={{ paddingLeft: 10, marginTop: 5 }}
-        numColumns={2}
-        key={2}
-        data={data ? data.hits : []}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item, index }) => {
-          return <FlatListItem item={item}></FlatListItem>;
-        }}
-      ></FlatList>
+      {isLoading && (
+        <Layout style={{ justifyContent: 'center', alignItems: 'center', height: '80%' }}>
+          <Spinner size='giant' />
+        </Layout>
+      )}
+      {isLoading === false && data && (
+        <FlatList
+          contentContainerStyle={{ gap: gapSize, paddingBottom: 30 }}
+          columnWrapperStyle={{ gap: gapSize }}
+          style={{ paddingLeft: 10, marginTop: 5 }}
+          numColumns={2}
+          key={2}
+          data={data ? data.hits : []}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item, index }) => {
+            return <FlatListItem item={item}></FlatListItem>;
+          }}
+        ></FlatList>
+      )}
     </Layout>
   );
 };

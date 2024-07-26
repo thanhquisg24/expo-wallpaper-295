@@ -24,6 +24,6 @@ export const customStyles = StyleSheet.create({
   imageVerticalSize: {
     width: '100%',
     height: 375,
-    borderRadius: 30,
+    borderRadius: 6,
   },
 });
